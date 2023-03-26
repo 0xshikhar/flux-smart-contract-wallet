@@ -22,19 +22,20 @@ async function main() {
   const accounts = await hre.ethers.getSigners()
   const owner = accounts[0]
   console.log(`owner add ${owner.address}`)
-  const OTPFactory = await ethers.getContractFactory('OTPFactory')
-  const oTPFactory = await OTPFactory.deploy()
-  await oTPFactory.deployed()
-  console.log('oTPFactory deployed:', oTPFactory.address)
+
+  // const OTPFactory = await ethers.getContractFactory('OTPFactory')
+  // const oTPFactory = await OTPFactory.deploy()
+  // await oTPFactory.deployed()
+  // console.log('oTPFactory deployed:', oTPFactory.address)
 
 
   const Verifier = await ethers.getContractFactory('Verifier');
   const verifier = await Verifier.deploy();
   console.log('verifier :', verifier.address);
 
-  const FluxWalletDeployer = await ethers.getContractFactory('FluxWalletDeployer');
-  const fluxWalletDeployer = await FluxWalletDeployer.deploy();
-  console.log('FluxWalletDeployer :', fluxWalletDeployer.address);
+  // const FluxWalletDeployer = await ethers.getContractFactory('FluxWalletDeployer');
+  // const fluxWalletDeployer = await FluxWalletDeployer.deploy();
+  // console.log('FluxWalletDeployer :', fluxWalletDeployer.address);
 
 
   // fs.writeFileSync(path.join(__dirname, `../deployments/${network.name}.json`), JSON.stringify(result));
