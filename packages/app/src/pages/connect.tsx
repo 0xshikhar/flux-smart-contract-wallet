@@ -14,7 +14,7 @@ export interface PeerMeta {
 }
 
 const HomePage: NextPage = () => {
-  const { socialRecoveryWalletAddress, entryPoint, socialRecoveryWalletAPI, isDeployed } = useFluxWallet();
+  const { fluxWalletAddress, entryPoint, fluxWalletAPI, isDeployed } = useFluxWallet();
   const network = useNetwork();
   const { data: signer } = useSigner();
   const { address } = useAccount();
@@ -72,11 +72,11 @@ const HomePage: NextPage = () => {
       }
 
       if (payload.method === "eth_sendTransaction") {
-        if (!socialRecoveryWalletAPI || !entryPoint || !address) {
+        if (!fluxWalletAPI || !entryPoint || !address) {
           return;
         }
         console.log("eth_sendTransaction");
-        const op = await socialRecoveryWalletAPI.createSignedUserOp({
+        const op = await fluxWalletAPI.createSignedUserOp({
           target: payload.params[0].to,
           data: payload.params[0].data,
           value: payload.params[0].value,
@@ -103,7 +103,7 @@ const HomePage: NextPage = () => {
     if (!connector || !network.chain) {
       return;
     }
-    connector.approveSession({ chainId: network.chain.id, accounts: [socialRecoveryWalletAddress] });
+    connector.approveSession({ chainId: network.chain.id, accounts: [fluxWalletAddress] });
     setWalletConnectMode("connected");
   };
 
@@ -117,7 +117,7 @@ const HomePage: NextPage = () => {
 
   return (
     <DefaultLayout>
-      {socialRecoveryWalletAddress && (
+      {fluxWalletAddress && (
         <Stack spacing="8">
           <Stack spacing="4">
             <Stack spacing="2">
@@ -125,7 +125,7 @@ const HomePage: NextPage = () => {
                 <FormLabel fontSize="md" fontWeight="bold">
                   AcountAbstraction Address (ERC 4337)
                 </FormLabel>
-                <Text fontSize="xs">{socialRecoveryWalletAddress}</Text>
+                <Text fontSize="xs">{fluxWalletAddress}</Text>
               </FormControl>
             </Stack>
             {walletConnectMode === "notConnected" && (

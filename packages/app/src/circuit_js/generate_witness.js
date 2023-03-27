@@ -1,9 +1,9 @@
 import wc from "./witness_calculator";
 
-export async function generateWitness (input) {
+export async function generateWitness(input) {
 	const response = await fetch('circuit.wasm');
 	const buffer = await response.arrayBuffer();
-	//console.log(buffer);
+	// console.log(buffer);
 	let buff;
 
 	await wc(buffer).then(async witnessCalculator => {

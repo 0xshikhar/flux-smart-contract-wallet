@@ -14,12 +14,12 @@ export const accounts = process.env.DEPLOYER_PRIVATE_KEY !== undefined ? [proces
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.12",
+    version: "0.8.15",
     settings: {
-      // optimizer: {
-      //   enabled: true,
-      //   runs: 200,
-      // },
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
     },
   },
   networks: {
@@ -27,8 +27,24 @@ const config: HardhatUserConfig = {
       chainId: 1337,
       allowUnlimitedContractSize: true,
     },
+    gnosis: {
+      url: "https://rpc.gnosischain.com",
+      accounts,
+      allowUnlimitedContractSize: true,
+    },
+    chiado: {
+      url: "https://rpc.chiadochain.net",
+      gasPrice: 1000000000,
+      accounts,
+      allowUnlimitedContractSize: true,
+    },
     goerli: {
       url: "https://eth-goerli.g.alchemy.com/v2/dIapWnteM78mUNXiFdEoJb6F9-6w2-hT",
+      accounts,
+      allowUnlimitedContractSize: true,
+    },
+    sepolia: {
+      url: "https://eth-sepolia.g.alchemy.com/v2/Kd1XQbFAa3ZboKORKFNQ9mmtcrM5PbZv",
       accounts,
       allowUnlimitedContractSize: true,
     },
@@ -58,6 +74,10 @@ const config: HardhatUserConfig = {
       accounts,
     },
   },
+
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_KEY,
+  }
 };
 
 export default config;

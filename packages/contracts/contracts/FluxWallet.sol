@@ -19,6 +19,15 @@ import "./features/SocialRecover.sol";
 import "./features/SessionManagement.sol";
 import "./features/AccessGrants.sol";
 
+interface IVerifier {
+    function verifyProof(
+        uint256[2] memory a,
+        uint256[2][2] memory b,
+        uint256[2] memory c,
+        uint256[2] memory input
+    ) external view returns (bool);
+}
+
 contract FluxWallet is
     ERC165,
     IERC1271,
@@ -42,6 +51,11 @@ contract FluxWallet is
 
     /// @notice round of recovery we're in
     uint256 public currRecoveryRound;
+
+    //for otp verification
+    address public verifierAddr;
+    uint256 public root;
+    uint256 public lastUsedTime = 0;
 
     /// @notice struct used for bookkeeping during recovery mode
     /// @dev trival struct but can be extended in future (when building for malicious guardians
@@ -102,8 +116,36 @@ contract FluxWallet is
 
     constructor(
         IEntryPoint anEntryPoint,
-        address anOwner
-    ) SimpleWallet(anEntryPoint, anOwner) {}
+        address anOwner,
+        uint _root
+    ) SimpleWallet(anEntryPoint, anOwner) {
+        root = _root;
+        verifierAddr = 0x9Bd0782Cc9C70a57aCAc290077a7e0fc8A4E7C4B;
+    }
+
+    modifier isValidProof(
+        uint256[2] memory a,
+        uint256[2][2] memory b,
+        uint256[2] memory c,
+        uint256[2] memory input
+    ) {
+        require(
+            IVerifier(verifierAddr).verifyProof(a, b, c, input),
+            "invalid proof"
+        );
+        require(input[0] == root, "invalid root");
+        require(input[1] > lastUsedTime, "old OTP");
+        _;
+        lastUsedTime = input[1];
+    }
+
+    function setMerkleRootAndVerifier(
+        uint256 _root,
+        address _verifier
+    ) external {
+        root = _root;
+        verifierAddr = _verifier;
+    }
 
     function setGuardians(
         address[] memory guardians,
@@ -225,5 +267,34 @@ contract FluxWallet is
         return
             interfaceId == type(IERC1271).interfaceId ||
             super.supportsInterface(interfaceId);
+    }
+
+    function testTransfer(
+        uint256[2] memory a,
+        uint256[2][2] memory b,
+        uint256[2] memory c,
+        uint256[2] memory input,
+        address to,
+        uint256 value
+    ) public isValidProof(a, b, c, input) {
+        payable(to).transfer(value);
+    }
+
+    function zkProof(
+        uint256[2] memory a,
+        uint256[2][2] memory b,
+        uint256[2] memory c,
+        uint256[2] memory d,
+        uint256 value,
+        address dest
+    ) external {
+        testTransfer(a, b, c, d, dest, value);
+    }
+
+    function sendTransaction(
+        address payable dest,
+        uint256 amount
+    ) external onlyOwner {
+        dest.transfer(amount);
     }
 }

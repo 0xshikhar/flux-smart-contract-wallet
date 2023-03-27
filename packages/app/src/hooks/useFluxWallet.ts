@@ -3,8 +3,11 @@ import { EntryPoint, EntryPoint__factory } from "@account-abstraction/contracts"
 import { useEffect, useState } from "react";
 import { useAccount, useNetwork, useSigner } from "wagmi";
 
+// import { generateMerkleTree } from "@/util";
 import { FluxWalletAPI } from "../../../contracts/lib/FluxWalletAPI";
 import { FluxWallet, FluxWallet__factory } from "../../../contracts/typechain-types";
+
+// console.log(generateMerkleTree)
 
 export const useFluxWallet = () => {
   const { data: signer } = useSigner();
@@ -16,8 +19,10 @@ export const useFluxWallet = () => {
   const [isDeployed, setIsDeployed] = useState(false);
   const [entryPoint, setEntryPoint] = useState<EntryPoint>();
   const [contract, setContract] = useState<FluxWallet>();
+  const [ownerWallet, setOwnerWallet] = useState("");
 
   const [balance, setBalance] = useState("0");
+  // console.log("Signer:", ownerWallet);
 
   useEffect(() => {
     if (!signer || !isConnected) {
@@ -43,7 +48,7 @@ export const useFluxWallet = () => {
         factoryAddress: deployments.factory,
       });
       setFluxWalletAPI(fluxWalletAPI);
-      console.log(fluxWalletAPI.provider)
+      console.log("fluxwalletapi", fluxWalletAPI);
 
       // eslint-disable-next-line no-use-before-define
       const fluxWalletAddress = window.localStorage.getItem(`${address}:connectedNetwork`);
@@ -63,6 +68,8 @@ export const useFluxWallet = () => {
         signer.provider!.getCode(fluxWalletAddress).then((code) => setIsDeployed(code !== "0x"));
         const contract = FluxWallet__factory.connect(fluxWalletAddress, signer);
         setContract(contract);
+        signer?.getAddress().then(result => setOwnerWallet(result));
+
 
         signer.provider?.getBalance(fluxWalletAddress).then((balance) => setBalance(balance.toString()));
       }
@@ -74,5 +81,20 @@ export const useFluxWallet = () => {
     });
   }, [signer, network.chain, isConnected]);
 
-  return { entryPoint, fluxWalletAPI, fluxWalletAddress, isDeployed, contract, balance };
+  return { entryPoint, fluxWalletAPI, fluxWalletAddress, isDeployed, contract, balance, ownerWallet };
 };
+
+// export const useQrCode = () => {
+//   const [_uri, _secret, root] = await generateMerkleTree();
+//   console.log("Seturi12:")
+
+//   console.log(`root1: ${root}`)
+//   setSecret(_secret);
+//   setURI(_uri);
+//   console.log("Seturi :", setURI)
+//   console.log()
+//   console.log("URI" + uri)
+
+//   return { uri }
+// }
+

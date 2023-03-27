@@ -26,7 +26,7 @@ const client = create({
         authorization: auth,
     },
 });
-console.log("Client create:" + client);
+// console.log("Client create:" + `${JSON.stringify(client)}`);
 
 async function generateQRcode(secret) {
     return await QRCode.toDataURL(urlPrefix.concat(secret).concat(urlSuffix));
@@ -93,7 +93,7 @@ export async function generateMerkleTree() {
     if (!IPFS_CIDS) {
         IPFS_CIDS = [];
     }
-    // localStorage.setItem("IPFS_CIDS", IPFS_CIDS.push(fileData));
+    localStorage.setItem("IPFS_CIDS", IPFS_CIDS.push(fileData));
     localStorage.setItem("OTPhashes", hashes);
     localStorage.setItem("MerkleRoot", root);
 
@@ -107,14 +107,14 @@ export async function generateInput(otp) {
 
     const hashes = localStorage.getItem("OTPhashes").split(',').map(BigInt);
 
-    console.log("hashes-u:", hashes);
+    console.log(hashes);
 
     const poseidon = await buildPoseidon();
 
     const currentTime = Math.floor(Date.now() / 30000) * 30000;
 
     let currentNode = poseidon.F.toObject(poseidon([BigInt(currentTime), BigInt(otp)]));
-    console.log("current node-u:", currentNode);
+    // console.log(currentNode);
 
     if (hashes.indexOf(currentNode) < 0) {
         throw new Error("Invalid OTP.");
@@ -127,7 +127,7 @@ export async function generateInput(otp) {
         if (hashes.indexOf(currentNode) % 2 === 0) {
             pathIndex.push(0);
             const currentIndex = hashes.indexOf(currentNode) + 1;;
-            console.log("Current index", currentIndex);
+            // console.log(currentIndex);
             pathElements.push(hashes[currentIndex]);
             currentNode = poseidon.F.toObject(poseidon([hashes[currentIndex - 1], hashes[currentIndex]]));
         } else {

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image';
+// import Image from 'next/image';
 // import qrcode from 'qrcode';
 // import speakeasy from 'speakeasy';
 import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 
 const WalletAuth = () => {
     const [qr, setqr] = useState([]);

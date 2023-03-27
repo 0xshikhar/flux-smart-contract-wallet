@@ -1,4 +1,7 @@
-/* eslint-disable  */
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+/* eslint-disable */
 
 // import Create2Factory from "./artifacts/contracts/Create2Factory.json";
 // import {
@@ -23,19 +26,19 @@ import OTP from "./artifacts/contracts/OTP.sol/OTP.json";
 import OTPFactory from "./artifacts/contracts/OTPFactory.sol/OTPFactory.json";
 import { generateCalldata } from "./circuit_js/generate_calldata";
 import { useFluxWallet } from "./hooks/useFluxWallet";
-import { FluxWallet__factory } from "./typechain-types/factories/contracts/FluxWallet__factory";
+import { FluxWallet__factory } from "./typechain-types/factories/contracts/FluxWallet.sol/FluxWallet__factory";
 // import { deployments } from 'hardhat';
 import { FluxWalletDeployer__factory } from "./typechain-types/factories/contracts/FluxWalletDeployer__factory";
 import { OTP__factory } from "./typechain-types/factories/contracts/OTP.sol/OTP__factory";
-import { FluxPaymasterApi } from "./typechain-types/FluxPaymasterApi";
-import { FluxWalletApi } from "./typechain-types/FluxWalletApi";
-
+// import { FluxPaymasterApi } from "./typechain-types/FluxPaymasterApi";
+// import { FluxWalletApi } from "./typechain-types/FluxWalletApi";
 
 
 let factory;
 let otp;
 
-const ENTRYPOINT_ADDR = "0x2167fA17BA3c80Adee05D98F0B55b666Be6829d6";
+
+const ENTRYPOINT_ADDR = "0xB890B15AF9bF4edcE2d39D5Ef321D33d876f8378";
 // const MY_WALLET_DEPLOYER = address.FluxWalletDeployer;
 
 const providerConfig = {
@@ -143,14 +146,14 @@ export async function setRootAndVerifier(
   smartWalletAPI,
   aaProvier
 ) {
-  const aaSigner = aaProvier.getSigner();
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  console.log("Provider:" + provider)
+  // const aaSigner = aaProvier.getSigner();
+  // const provider = new ethers.providers.Web3Provider(ethereum);
+  // console.log("Provider:" + provider)
 
-  const scw = new ethers.ContractFactory(
-    FluxWallet__factory.abi,
-    FluxWallet__factory.bytecode
-  );
+  // const scw = new ethers.ContractFactory(
+  //   FluxWallet__factory.abi,
+  //   FluxWallet__factory.bytecode
+  // );
 
   let root = localStorage.getItem("MerkleRoot");
 
@@ -287,27 +290,30 @@ export async function naiveProof(
   recepient
 ) {
   const root = localStorage.getItem("MerkleRoot");
-  const { smartWalletAPI, httpRpcClient, aaProvier } = await getAaParams();
+  // const { smartWalletAPI, httpRpcClient, aaProvier } = await getAaParams();
   // let { smartWalletAPI, httpRpcClient, aaProvier } = await getAaParams(root);
 
-  const aaSigner = aaProvier.getSigner();
+  // const aaSigner = aaProvier.getSigner();
+
+  // console.log("aaSigner: ", aaSigner);
+
 
   const scw = new ethers.Contract(
-    "0xA094a2Dc2B363f934DE3858a56dF86Cd117a49ef",
+    "0x33a15964328a3419ec55f6192fccb81a3e3861e2",
     FluxWallet__factory.abi,
-    aaSigner
+    fluxWalletAPI
   );
 
-  console.log(`amount: ${amount} recepient: ${recepient}`);
+  console.log(`amount-c: ${amount} recepient: ${recepient}`);
   console.log("ZK Proof being generated");
 
   const calldata = await generateCalldata(input);
-  console.log("calldata");
+  console.log("calldata-c:");
   console.log(calldata);
   let tx;
 
   if (calldata) {
-    console.log(otp.address);
+    console.log("otp address-c:", otp.address);
     console.log(`recepient: ${recepient} amount: ${amount}`);
 
     const tx = await scw.zkProof(
@@ -319,9 +325,9 @@ export async function naiveProof(
       recepient
     );
     const rc2 = await tx.wait();
-    console.log(rc2);
+    console.log("rc2", rc2);
   } else {
-    throw new Error("Witness generation failed.");
+    throw new Error("Witness generation failed.-c:");
   }
   return tx;
 }

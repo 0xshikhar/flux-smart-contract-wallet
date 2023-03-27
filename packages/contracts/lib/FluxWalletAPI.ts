@@ -32,6 +32,7 @@ export class FluxWalletAPI extends SimpleWalletAPI {
       this.entryPointAddress,
       ownerAddress,
       this.index,
+      0
     ]);
     console.log(data);
     return hexConcat([this.factory.address, data]);
