@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable camelcase */
 import { SafeOnRampEvent, SafeOnRampKit, SafeOnRampProviderType } from '@safe-global/onramp-kit';
 import * as dotenv from "dotenv";

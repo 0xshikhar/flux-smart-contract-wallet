@@ -27,7 +27,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   };
 
   const onClickGuardian = () => {
-    router.push("/guardian");
+    router.push("/social-recovery");
   };
 
   const onClickConnect = () => {
@@ -76,7 +76,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
                 Connect
               </Button>
               <Button onClick={onClickGuardian} {...factoryButtonProps}>
-                Guardian
+                Social Recovery
               </Button>
             </ButtonGroup>
           </Center>

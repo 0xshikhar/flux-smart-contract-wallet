@@ -57,59 +57,11 @@ const HomePage: NextPage = () => {
 
   return (
     <DefaultLayout>
-      <Stack spacing="8">
-        <Stack spacing="4">
-          <Stack spacing="2">
-            <FormControl>
-              <FormLabel fontSize="md" fontWeight="bold">
-                Recovery
-              </FormLabel>
-              <Text fontSize="xs">{socialRecoveryWalletAddress}</Text>
-            </FormControl>
-          </Stack>
+      <div className="appbox">
 
-          <Stack spacing="2">
-            <FormControl>
-              <FormLabel fontSize="md" fontWeight="bold">
-                IsGuardian
-              </FormLabel>
-              <Text fontSize="xs">{isOk.toString()}</Text>
-            </FormControl>
-          </Stack>
 
-          <Stack spacing="2">
-            <FormControl>
-              <FormLabel fontSize="md" fontWeight="bold">
-                InRecovery
-              </FormLabel>
-              <Text fontSize="xs">{inRecovery.toString()}</Text>
-            </FormControl>
-          </Stack>
 
-          <Stack spacing="2">
-            <FormControl>
-              <FormLabel>NewOwner</FormLabel>
-              <Input type="text" fontSize="xs" value={newOwner} onChange={(e) => setNewOwner(e.target.value)} />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Gardian 1</FormLabel>
-              <Input type="text" fontSize="xs" value={guardian} onChange={(e) => setGuardians(e.target.value)} />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Gardian 2</FormLabel>
-              <Input type="text" fontSize="xs" value={guardian2} onChange={(e) => setGuardians2(e.target.value)} />
-            </FormControl>
-            <Button
-              w="full"
-              colorScheme="brand"
-              onClick={txRecovery}
-              isDisabled={!newOwner || !isOk || !inRecovery || !guardian || !guardian2}
-            >
-              Recovery
-            </Button>
-          </Stack>
-        </Stack>
-      </Stack>
+      </div>
     </DefaultLayout>
   );
 };

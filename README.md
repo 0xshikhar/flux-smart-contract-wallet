@@ -30,6 +30,6 @@ Flux Wallet is a customized Smart Contract Wallet based on ERC-4337 standard.Flu
 - Circom for Arthematic circuits implemation
 - Snark.js for implementing Zero Knowledge Proof
 - ENS for user profiles names
-- Ethereum Goerli Testnet (for development purposes )
+- Ethereum Goerli Testnet (for development purposes)
 - Hardhat for Smart Contract Testing
 - Solidity for writing smart contract

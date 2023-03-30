@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button, FormControl, FormHelperText, FormLabel, Input, Stack, Text } from "@chakra-ui/react";
 import WalletConnect from "@walletconnect/client";
 import { convertHexToUtf8 } from "@walletconnect/utils";

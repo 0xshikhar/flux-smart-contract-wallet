@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable camelcase */
+
 import { EntryPoint, EntryPoint__factory } from "@account-abstraction/contracts";
 import { useEffect, useState } from "react";
 import { useAccount, useNetwork, useSigner } from "wagmi";
@@ -79,7 +81,7 @@ export const useFluxWallet = () => {
       const entryPoint = EntryPoint__factory.connect(deployments.entryPoint, signer);
       setEntryPoint(entryPoint);
     });
-  }, [signer, network.chain, isConnected]);
+  }, [signer, network.chain, isConnected, address]);
 
   return { entryPoint, fluxWalletAPI, fluxWalletAddress, isDeployed, contract, balance, ownerWallet };
 };
