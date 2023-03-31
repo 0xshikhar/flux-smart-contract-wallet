@@ -26,7 +26,7 @@ const client = create({
         authorization: auth,
     },
 });
-console.log("Client create:" + client);
+// console.log("Client create:" + client);
 
 async function generateQRcode(secret) {
     return await QRCode.toDataURL(urlPrefix.concat(secret).concat(urlSuffix));

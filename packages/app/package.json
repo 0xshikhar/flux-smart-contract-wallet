@@ -43,7 +43,7 @@
     "bfj": "^7.0.2",
     "daisyui": "^2.51.5",
     "ethers": "^5.7.1",
-    "fastfigile": "^0.0.20",
+    "fastfile": "^0.0.20",
     "ffjavascript": "^0.2.57",
     "framer-motion": "^7.3.6",
     "fs": "^0.0.1-security",

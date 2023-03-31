@@ -1,4 +1,35 @@
-# Flux Wallet : 2FA Account Abstraction with Social Recovery
+# Flux Wallet
 
-Flux Wallet is built with the aim of providing better security to user in a decentralized way.
-We are enabling users to authenticate transactions with a second layer of security while maintaining privacy. Users have to provide a second factor in the form of a pin generated on google authenticator to validate a transaction. Two-factor authentication is done by providing a Zero Knowledge Proof-based two-factor authentication system. The advantage of using ZKP is that we can proof of our identity without revealing the secret information we have (here, secret info is OTP) to the verifier system. We can prove that we know the information, and verification of the proof takes place on the chain.
+Flux Wallet is a customized Smart Contract Wallet based on ERC-4337 standard.Flux Wallet is improving Web3 wallet UX and aim to bring next wave of Web3 users securely.
+
+### Features -
+
+- **Security**: **2FA (factor authenciation)** feature using **Google Authenticator** which makes Flux wallet more secure than any traditional wallet
+- **Recovery Management:** Flux wallet has **Social Recovery** management option so you can recover your wallet with help of your friends.
+- **User-friendly interface**: The user interface of Flux Wallet is intuitive and easy to use, making it accessible to both novice and experienced users. It is very to use for any web users to use it like a **Google account**
+- **Decentralization**: Flux Wallet is fully based on smart contract implementing ERC4337 at its core and for 2FA, we are using **Zero Knowledge proofs** to verify user **OTP** which make it even more secure.
+- **Customization:** It can be customized according to user needs.
+- **Push notifications:** User will recieve push notifications(using **Push Protocol**) whenever there is any activity on their wallet such as receiving or sending payments. (will be implemented soon)
+
+### The Problems It Solves
+
+- Non Custodial wallets in Blockchain are not easy to use for lots of Web2 people.
+- Billions of dollars have been lost from hot wallets every year and there is no way a user can recover the amount.
+- Lots of users' wallets got compromised in making a transaction and interacting with suspicious websites.
+- On the other hand, cold wallets are hard to use for any new user and manage.
+- 60%+ web3 users fear that their wallet will be compromised.
+- Everyone can not get cold wallets as users will need to buy them for around $50 to $200.
+- Users usually keep around 20% of their portfolio on web-based wallets because they don’t find them safe.
+- Traditional wallets dont have customized features that users want due to nature of tradional wallets
+
+## Tech Stack & Tools
+
+- Next.js as a frontend framework
+- TailwindCSS for CSS design
+- ERC 4337 Standard Implementation
+- Circom for Arthematic circuits implemation
+- Snark.js for implementing Zero Knowledge Proof
+- ENS for user profiles names
+- Ethereum Goerli Testnet (for development purposes )
+- Hardhat for Smart Contract Testing
+- Solidity for writing smart contract
