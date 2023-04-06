@@ -11,6 +11,34 @@ Flux Wallet is a customized Smart Contract Wallet based on ERC-4337 standard.Flu
 - **Customization:** It can be customized according to user needs.
 - **Push notifications:** User will recieve push notifications(using **Push Protocol**) whenever there is any activity on their wallet such as receiving or sending payments. (will be implemented soon)
 
+### Some Screenshots of the current Web App
+
+**Main Dashboard Page**
+![Image](/image/flux-1.png)
+
+**Connecting Wallet**
+![Image](/image/flux-6.png)
+
+**Deploying Flux Wallet Contract**
+[Image](/image/flux-deploy.png)
+
+**2FA Setup Page**
+[Image](/image/flux-2fa.png)
+
+**Make Transaction With 2FA**
+[Image](/image/flux-send-txn.png)
+
+**Guardian Setup **
+[Image](/image/flux-2.png)
+
+**Social Recovery Dashboard**
+[Image](/image/flux-3.png)
+**Start Flux Wallet Recovery**
+[Image](/image/flux-4.png)
+
+**Page**
+[Image](/image)
+
 ### The Problems It Solves
 
 - Non Custodial wallets in Blockchain are not easy to use for lots of Web2 people.
