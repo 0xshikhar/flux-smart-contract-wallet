@@ -19,7 +19,10 @@ Flux Wallet is a customized Smart Contract Wallet based on ERC-4337 standard.Flu
 **Connecting Wallet**
 ![Image](/image/flux-6.png)
 
-**Deploying Flux Wallet Contract**
+**Deploying Flux Wallet Smart Contract**
+![Image](/image/flux-deploy.png)
+
+**Setting Up 2FA using Zero Knowledge**
 ![Image](/image/flux-2fa.png)
 
 **Make Transaction With 2FA**
