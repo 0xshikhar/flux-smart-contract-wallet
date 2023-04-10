@@ -14,6 +14,7 @@ Flux Wallet is a customized Smart Contract Wallet based on ERC-4337 standard.Flu
 ## Smart Contracts
 
 **Ethereum Goerli Testnet**
+
 Blockchain Explorer Link - https://goerli.etherscan.io/address/0x33a15964328a3419ec55f6192fccb81a3e3861e2#code
 
 ```
@@ -38,10 +39,14 @@ verifierContract : "0x2cDc47369bb86C05198Ea2CFF8c548b73b919Bb1"
 ```
 
 **Sepolia Testnet**
+
 Blockchain Explorer link - https://sepolia.etherscan.io/address/0x33a15964328a3419ec55f6192fccb81a3e3861e2#code
 
 ```
-"entryPoint":"0x43ccc7277E12d6dD3363B9897e0cf5BB22e93735","fluxWalletFactory":"0xfaf2900c2063573f2faa347d0f5e735f403eb66a","sampleRecipient":"0x72c186Fbff451a87E2b538219BC6Ffefd19F7aEA","signerAddress":"0xdeaa150597535Eed8c95Ad090757815F1B9Da15d"
+"entryPoint":"0x43ccc7277E12d6dD3363B9897e0cf5BB22e93735"
+"fluxWalletFactory":"0xfaf2900c2063573f2faa347d0f5e735f403eb66a"
+"sampleRecipient":"0x72c186Fbff451a87E2b538219BC6Ffefd19F7aEA"
+"signerAddress":"0xdeaa150597535Eed8c95Ad090757815F1B9Da15d"
 ```
 
 ### Screenshots of the current Web App
